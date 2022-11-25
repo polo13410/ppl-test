@@ -14,8 +14,8 @@
     "webpack-cli": "3.1.2"
   },
   "scripts": {
-    "build:dev": "rm -rf ./dist && webpack --config ./config/webpack.config.js --mode development",
-    "build:prod": "rm -rf ./dist && webpack --config ./config/webpack.config.js --mode production",
+    "build:dev": "del /s .\\dist && webpack --config ./config/webpack.config.js --mode development",
+    "build:prod": "del /s .\\dist && webpack --config ./config/webpack.config.js --mode production",
     "test": "ts-node --project ./tsconfig.json ./config/run-test"
   }
 }
