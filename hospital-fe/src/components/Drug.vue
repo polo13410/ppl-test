@@ -12,8 +12,8 @@ export interface Props {
   drugsProp: Array<string>;
 }
 const props = defineProps<Props>();
-
 let formatedDrugs = computed(()=>formatDrugs(props.drugsProp))
+
 
 function formatDrugs(drugs: Array<string>) {
   let drugsLocal =[""];
