@@ -1,6 +1,5 @@
 import { PatientsRegister } from "./patientsRegister";
 export declare class Quarantine {
-    private static readonly NOT_IMPLEMENTED_MESSAGE;
     private pPatients;
     private pDrugs;
     constructor(patients: PatientsRegister);

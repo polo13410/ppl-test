@@ -1,7 +1,6 @@
 import { PatientsRegister } from "./patientsRegister";
 
 export class Quarantine {
-  private static readonly NOT_IMPLEMENTED_MESSAGE = "Work, work.";
   private pPatients: PatientsRegister = undefined;
   private pDrugs: Array<string> = undefined;
 
