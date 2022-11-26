@@ -5,7 +5,12 @@ export class Quarantine {
   private pDrugs: Array<string> = undefined;
 
   constructor(patients: PatientsRegister) {
-    this.pPatients = patients;
+    //  Object.keys(patients).forEach(key => {
+    //   this.pPatients[key] = patients[key]
+    //  });
+
+    this.pPatients = {...patients};
+
   }
 
   public setDrugs(drugs: Array<string>): void {

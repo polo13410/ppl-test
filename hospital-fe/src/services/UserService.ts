@@ -37,25 +37,5 @@ function formatPatients(list: string) {
 }
 
 function formatDrugs(list: string) {
-  let drugsLocal = [""];
-  list.split(",").forEach((drug: any) => {
-    switch (drug) {
-      case "I":
-        drugsLocal.push("Insulin");
-        break;
-      case "P":
-        drugsLocal.push("Paracetamol");
-        break;
-      case "As":
-        drugsLocal.push("Aspirin");
-        break;
-      case "An":
-        drugsLocal.push("Antibiotics");
-        break;
-      case "":
-        drugsLocal.push("None");
-        break;
-    }
-  });
-  return drugsLocal;
+  return list.split(',');
 }

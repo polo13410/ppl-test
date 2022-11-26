@@ -24,7 +24,7 @@
       <v-card-title> Drugs: </v-card-title>
       <Drug :drugs-prop="simulation.drugs" />
       <v-card-title> Patients after simulation: </v-card-title>
-      <Patient :patients-prop="simulation.patientsBefore" />
+      <Patient :patients-prop="simulation.patientsAfter" />
     </v-card>
   </div>
 </template>
@@ -37,7 +37,7 @@ import { ref } from "vue";
 import { PatientsRegister } from "hospital-lib";
 import { Quarantine } from "hospital-lib";
 
-let drugs = ref<Array<string>>(["None"]);
+let drugs = ref<Array<string>>([""]);
 let patients = ref<PatientsRegister>({ F: 0, H: 0, D: 0, T: 0, X: 0 });
 
 let results = ref<
@@ -67,7 +67,7 @@ function runQuarantine() {
   let experiment = new Quarantine(patients.value);
   experiment.setDrugs(drugs.value);
   experiment.wait40Days();
-  experiment.report();
+
   results.value.push({
     patientsBefore: patients.value,
     drugs: drugs.value,
