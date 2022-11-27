@@ -1,6 +1,6 @@
 import { PatientsRegister } from "hospital-lib";
 
-export async function fetchPatients(): Promise<PatientsRegister> {
+export async function fetchPatients() {
   const response = await fetch("http://localhost:7200/patients");
   const data = await response.json();
   return formatPatients(data);
@@ -12,17 +12,21 @@ export async function fetchDrugs() {
   return formatDrugs(data);
 }
 
-function formatPatients(list: string) {
+function formatPatients(data: string) {
   let patients: PatientsRegister = {};
-  list.split(",").forEach((key) => {
-    if (patients[key] === undefined || patients[key] < 0) {
-      patients[key] = 0;
+  
+  data.split(",").forEach((key) => {
+    if (patients[key] === undefined) {
+      patients[key] = 1;
+    } else {
+      patients[key]++;
     }
-    patients[key]++;
   });
   return patients;
 }
 
-function formatDrugs(list: string) {
-  return list.split(",");
+function formatDrugs(data: string) {
+  if (data === "" || data === undefined) return [];
+  let drugList = data.split(",");
+  return drugList;
 }

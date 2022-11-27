@@ -1,24 +1,9 @@
 import { PatientsRegister } from "./patientsRegister";
+import { dicStatusName } from "./utils";
 
 export class Quarantine {
   private pPatients: PatientsRegister = undefined;
   private pDrugs: Array<string> = undefined;
-
-  // Dictionnary with every diseases
-  public dicDiseasesName: { [key: string]: string } = {
-    F: "Fever",
-    D: "Diabete",
-    T: "Tuberculosis",
-    H: "Healthy",
-    X: "Dead",
-  };
-
-  public dicDrugsName: { [key: string]: string } = {
-    An: "Antibiotics",
-    As: "Aspirin",
-    I: "Insulin",
-    P: "Paracetamol"
-  };
 
   constructor(patients: PatientsRegister) {
     //Clone to cancel modification of the object patients
@@ -40,7 +25,7 @@ export class Quarantine {
       this.pDrugs.find((elem) => elem == "As") &&
       this.pDrugs.find((elem) => elem == "P")
     ) {
-      Object.keys(this.dicDiseasesName).forEach((key) => {
+      Object.keys(dicStatusName).forEach((key) => {
         //Doesn't apply to already dead
         if (key != "X") {
           // As+P = everyone X
