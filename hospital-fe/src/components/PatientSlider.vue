@@ -1,32 +1,36 @@
 <template>
   <v-slider
-    :label="nameProp"
-    v-model="slider"
+    :label="sliderProp.name + ': ' + sliderProp.value"
+    v-model="sliderProp.value"
     class="align-center"
-    dense
     :max="max"
     :min="min"
+    step="1"
+    thumb-label
+    style="min-width: 300px"
+    color="secondary"
+    @update:model-value="updateSliderValue"
   >
-    <template v-slot:append>
-      <v-text-field
-        v-model="slider"
-        dense
-        type="number"
-        style="width: 70px"
-      ></v-text-field>
-    </template>
   </v-slider>
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
 
 export interface Props {
-  nameProp: string;
+  sliderProp: {
+    key: string;
+    name: string;
+    value: number;
+  };
 }
 const props = defineProps<Props>();
 
-let min: 0;
-let max: 20;
-let slider = ref(10);
+const emit = defineEmits(["updSlider"]);
+
+let min = 0;
+let max = 10;
+
+function updateSliderValue() {
+  emit("updSlider", {key: props.sliderProp.key, value: props.sliderProp.value});
+}
 </script>

@@ -1,47 +1,23 @@
 <template>
   <v-responsive>
-    <span class="ma-2" v-if="patientsProp['F'] >0">Fever: {{ patientsProp["F"] }}</span>
-    <span class="ma-2" v-if="patientsProp['D'] >0">Diabete: {{ patientsProp["D"] }}</span>
-    <span class="ma-2" v-if="patientsProp['T'] >0">Tuberculosis: {{ patientsProp["T"] }}</span>
-    <span class="ma-2" v-if="patientsProp['H'] >0">Healthy: {{ patientsProp["H"] }}</span>
-    <span class="ma-2" v-if="patientsProp['X'] >0">Dead: {{ patientsProp["X"] }}</span>
+    <v-row class="mx-3">
+      <div v-for="key in Object.keys(dicDiseases)" class="pa-0">
+      <v-col v-if="patientsProp[key]" cols="auto">
+        <p class="font-weight-regular body-1 mx-2" >
+          {{ dicDiseases[key] }} : {{patientsProp[key]}}
+        </p>
+      </v-col>
+    </div>
+    </v-row>
   </v-responsive>
 </template>
 
 <script setup lang="ts">
 import { PatientsRegister } from "hospital-lib";
-import { computed } from "vue";
 
 export interface Props {
   patientsProp: PatientsRegister;
+  dicDiseases: { [key: string]: string };
 }
 const props = defineProps<Props>();
-
-// const formatedPatients = computed(() => formatPatients(props.patientsProp));
-
-// function formatPatients(list: string) {
-//   let patients: PatientsRegister = { F: 0, H: 0, D: 0, T: 0, X: 0 };
-//   list.split(",").forEach((patient) => {
-//     console.log(formatedPatients);
-//     console.log(props);
-//     switch (patient) {
-//       case "F":
-//         patients["F"]++;
-//         break;
-//       case "D":
-//         patients["D"]++;
-//         break;
-//       case "T":
-//         patients["T"]++;
-//         break;
-//       case "H":
-//         patients["H"]++;
-//         break;
-//       case "X":
-//         patients["X"]++;
-//         break;
-//     }
-//   });
-//   return patients;
-// }
 </script>

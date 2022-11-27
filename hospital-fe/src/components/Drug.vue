@@ -1,42 +1,20 @@
 <template>
   <v-responsive>
-    <span> </span>
-    <span class="ma-2" v-for="drug in formatedDrugs">{{ drug }}</span>
+    <v-row class="mx-3">
+      <v-col v-for="drug in drugsProp" cols="auto" class="">
+        <p class="font-weight-regular body-1 mx-2">
+          {{ dicDrugs[drug] }}
+        </p>
+      </v-col>
+      <v-col v-if="drugsProp.length == 0"><p>None</p></v-col>
+    </v-row>
   </v-responsive>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
-
 export interface Props {
   drugsProp: Array<string>;
+  dicDrugs: { [key: string]: string };
 }
 const props = defineProps<Props>();
-let formatedDrugs = computed(()=>formatDrugs(props.drugsProp))
-
-
-function formatDrugs(drugs: Array<string>) {
-  let drugsLocal =[""];
-  drugs.forEach((drug: any) => {
-    switch (drug) {
-      case "I":
-        drugsLocal.push("Insulin");
-        break;
-      case "P":
-        drugsLocal.push("Paracetamol");
-        break;
-      case "As":
-        drugsLocal.push("Aspirin");
-        break;
-      case "An":
-        drugsLocal.push("Antibiotics");
-        break;
-      case "":
-        drugsLocal.push("None");
-        break;
-    }
-  });
-  return drugsLocal;
-}
-
 </script>

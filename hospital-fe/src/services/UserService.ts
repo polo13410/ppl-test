@@ -13,29 +13,16 @@ export async function fetchDrugs() {
 }
 
 function formatPatients(list: string) {
-  let patients: PatientsRegister = { F: 0, H: 0, D: 0, T: 0, X: 0 };
-  list.split(",").forEach((patient) => {
-    switch (patient) {
-      case "F":
-        patients["F"]++;
-        break;
-      case "D":
-        patients["D"]++;
-        break;
-      case "T":
-        patients["T"]++;
-        break;
-      case "H":
-        patients["H"]++;
-        break;
-      case "X":
-        patients["X"]++;
-        break;
+  let patients: PatientsRegister = {};
+  list.split(",").forEach((key) => {
+    if (patients[key] === undefined || patients[key] < 0) {
+      patients[key] = 0;
     }
+    patients[key]++;
   });
   return patients;
 }
 
 function formatDrugs(list: string) {
-  return list.split(',');
+  return list.split(",");
 }
