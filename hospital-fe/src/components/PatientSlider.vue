@@ -8,7 +8,7 @@
     step="1"
     thumb-label
     style="min-width: 300px"
-    color="secondary"
+    color="secondary-darken-1"
     @update:model-value="updateSliderValue"
   >
   </v-slider>
